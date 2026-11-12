@@ -2200,6 +2200,10 @@
 
     if (pathname === '/panel') {
       showOnlyView('view-admin');
+      const tabParam = searchParams.get('tab');
+      if (tabParam && ['havuz', 'harita', 'isletmeler', 'filo', 'kontor', 'mutabakat', 'entegrasyon'].includes(tabParam)) {
+        activateAdminTab(tabParam);
+      }
       renderAdminWorkspace();
     } else if (pathname === '/isletme') {
       showOnlyView('view-merchant');

@@ -4,6 +4,7 @@
    ========================================================================== */
 
 :root {
+  color-scheme: dark;
   --bg-deep: #060c1a;
   --bg-base: #0b1326;
   --surface: #111d36;
@@ -1062,7 +1063,12 @@ textarea:focus {
   white-space: nowrap;
   border-bottom: 1px solid var(--border-strong);
   margin-bottom: 1.15rem;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tab-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .tab-btn {
