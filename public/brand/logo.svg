@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 84" fill="none">
+  <defs>
+    <linearGradient id="logoBgGrad" x1="0" y1="0" x2="68" y2="68" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="logoEmerald" x1="18" y1="12" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="logoCyan" x1="10" y1="20" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="textEmerald" x1="220" y1="20" x2="310" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="logoGlow" x="6" y="6" width="60" height="60" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#10b981" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Left Emblem Group (Centered at 42, 42) -->
+  <g transform="translate(10, 8)">
+    <!-- Emblem Background Squircle -->
+    <rect width="68" height="68" rx="16" fill="url(#logoBgGrad)"/>
+    <rect x="1" y="1" width="66" height="66" rx="15" stroke="#334155" stroke-width="1.5" stroke-opacity="0.8"/>
+
+    <!-- Dynamic Route Arc -->
+    <path d="M16 46C12 36 15 22 26 17C35 13 46 17 50 25C53 33 48 44 38 48" 
+          stroke="url(#logoCyan)" stroke-width="3" stroke-linecap="round" stroke-dasharray="3.5 3.5" opacity="0.6"/>
+
+    <!-- 3D Isometric Parcel Box -->
+    <g filter="url(#logoGlow)">
+      <!-- Top Face -->
+      <path d="M34 16L49 25L34 34L19 25Z" fill="#34d399"/>
+      <!-- Left Face -->
+      <path d="M19 25L34 34V52L19 43Z" fill="url(#logoEmerald)"/>
+      <!-- Right Face -->
+      <path d="M34 34L49 25V43L34 52Z" fill="#047857"/>
+      <!-- Parcel Seams -->
+      <path d="M34 16V34M34 34V52" stroke="#064e3b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M26.5 20.5L41.5 29.5" stroke="#a7f3d0" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+
+    <!-- Speed / Waypoint Pin -->
+    <circle cx="51" cy="49" r="4.5" fill="#38bdf8"/>
+    <circle cx="51" cy="49" r="2" fill="#ffffff"/>
+  </g>
+
+  <!-- Typography: PAKETÜS -->
+  <g id="brand-text">
+    <!-- PAKET in Deep Navy / Slate -->
+    <text x="94" y="49" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" 
+          font-size="34" 
+          font-weight="900" 
+          letter-spacing="0.5px" 
+          fill="#0f172a">PAKET</text>
+
+    <!-- ÜS in Vibrant Emerald -->
+    <text x="216" y="49" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" 
+          font-size="34" 
+          font-weight="900" 
+          letter-spacing="0.5px" 
+          fill="url(#textEmerald)">ÜS</text>
+
+    <!-- Dedicated Accent Dots for Turkish Ü to guarantee 100% unclipped crispness -->
+    <!-- U stem spans approximately x=221 to x=241, dots at x=226 and x=236, y=21 -->
+    <circle cx="226" cy="21" r="2.8" fill="#10b981"/>
+    <circle cx="236" cy="21" r="2.8" fill="#10b981"/>
+
+    <!-- Corporate Subtitle / Tagline -->
+    <text x="95" y="69" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" 
+          font-size="10.5" 
+          font-weight="700" 
+          letter-spacing="2.8px" 
+          fill="#64748b">AKILLI KURYE &amp; ROTA PLATFORMU</text>
+  </g>
+</svg>

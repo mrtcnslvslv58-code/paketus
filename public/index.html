@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1326">
+  <meta name="description" content="PAKETÜS — Kurumsal Çok Kiracılı Kurye, Pagate Tarzı Akıllı Paket Birleştirme, POS Eşleştirme, Caller ID, Bas-Konuş Telsiz ve Süresiz Kontör Otomasyonu">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>PAKETÜS — Akıllı Kurye, Rota &amp; POS Otomasyonu</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/brand/icon-192.svg">
+  <link id="pwa-manifest" rel="manifest" href="/api/manifest.json?role=vitrin">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="/styles.css?v=20261112">
+</head>
+<body>
+  <div id="toast-stack" class="toast-stack" aria-live="polite" aria-atomic="false"></div>
+
+  <div id="app-root" class="app-root">
+    <!-- =========================================================
+         1. KURUMSAL SAAS VİTRİN & CANLI KONTÖR HESAPLAYICI (/)
+         ========================================================= -->
+    <section id="view-vitrin" class="app-view vitrin-view">
+      <header class="vitrin-header">
+        <div class="container vitrin-header-inner">
+          <a href="/" class="brand-logo-pill" data-nav="/">
+            <img src="/brand/logo.svg" alt="PAKETÜS Kurumsal Logo" class="brand-logo-img" width="185" height="41">
+          </a>
+          <nav class="vitrin-nav" aria-label="Vitrin Gezinme">
+            <a href="#canli-demo-bolumu" class="vitrin-nav-link">Canlı Demo</a>
+            <a href="#kontor-hesaplayici-bolumu" class="vitrin-nav-link">Kontör Hesaplayıcı</a>
+            <a href="#ustun-ozellikler-bolumu" class="vitrin-nav-link">Özellikler</a>
+            <a href="#entegrasyon-vitrin-bolumu" class="vitrin-nav-link">10+ Entegrasyon</a>
+          </nav>
+          <div class="vitrin-header-actions">
+            <button type="button" id="btn-vitrin-login" class="btn btn-outline-light btn-sm">Giriş Yap</button>
+            <button type="button" id="btn-vitrin-register" class="btn btn-emerald btn-sm">Yeni Operasyon Aç (+100 Kontör)</button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <!-- HERO -->
+        <section class="vitrin-hero">
+          <div class="container vitrin-hero-grid">
+            <div class="vitrin-hero-copy">
+              <div class="hero-kicker-row">
+                <span class="badge badge-emerald-glow">PAKETMATİK + PAGATE + VİGO + ADİSYO GÜCÜ TEK ÇATIDA</span>
+                <span id="vitrin-health-pill" class="badge badge-amber-soft">Canlı Motor Hazır</span>
+              </div>
+              <h1 class="vitrin-hero-title">
+                Kurye Operasyonunuzda <span class="text-emerald">Akıllı Paket Birleştirme</span>, POS Disiplini ve <span class="text-amber">Yanmayan Kontör</span> Çağı
+              </h1>
+              <p class="vitrin-hero-subtitle" id="vitrin-tagline">
+                Aylık sabit abonelik ücreti ödemeden; 38° açı koridorlu otomatik rota birleştirme, kapıda POS kurye kilidi, Caller ID müşteri tanıma, 80mm ESC/POS termal fiş okuma ve bas-konuş telsiz ile tüm saha operasyonunuzu tek ekrandan yönetin.
+              </p>
+              <div class="vitrin-hero-cta">
+                <a href="#canli-demo-bolumu" class="btn btn-emerald btn-lg">⚡ Şifresiz Canlı Demo Dene</a>
+                <button type="button" id="btn-hero-register" class="btn btn-amber btn-lg">🚀 30 Saniyede Şirketini Kur</button>
+              </div>
+              <div class="hero-trust-strip">
+                <div class="trust-stat">
+                  <strong>0 ₺ / Ay</strong>
+                  <span>Sabit Abonelik Yok</span>
+                </div>
+                <div class="trust-stat">
+                  <strong>Süresiz</strong>
+                  <span>Asla Yanmayan Kontör</span>
+                </div>
+                <div class="trust-stat">
+                  <strong>≤ 38° + 2-Opt</strong>
+                  <span>Akıllı Rota Birleştirme</span>
+                </div>
+                <div class="trust-stat">
+                  <strong>%100 POS Kilidi</strong>
+                  <span>Sıfır Yanlış Kurye Ataması</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="vitrin-hero-card">
+              <div class="radar-card-header">
+                <span class="live-dot"></span>
+                <strong>Canlı Saha &amp; Akıllı Koridor Özeti</strong>
+                <span class="badge badge-slate">Çok Kiracılı İzole Mimari</span>
+              </div>
+              <div class="radar-preview-list">
+                <div class="radar-preview-item">
+                  <div class="radar-icon emerald">🧠</div>
+                  <div>
+                    <strong>Pagate Tarzı Otomatik Grup (#B-101)</strong>
+                    <p>Hatay Dönercisi + Burger İstasyonu → Aynı 32° kuzeydoğu koridorunda 3 paket birleştirildi, 2-opt ile 2.4 km tasarruf sağlandı.</p>
+                  </div>
+                </div>
+                <div class="radar-preview-item">
+                  <div class="radar-icon amber">💳</div>
+                  <div>
+                    <strong>Kapıda Kredi Kartı POS Koruması</strong>
+                    <p>Kapıda POS ödemeli siparişler yalnızca <code>POS Zimmetli</code> ve çevrimiçi kuryelere yönlendirilir.</p>
+                  </div>
+                </div>
+                <div class="radar-preview-item">
+                  <div class="radar-icon sky">📞</div>
+                  <div>
+                    <strong>Caller ID &amp; 80mm ESC/POS Fiş Yakalama</strong>
+                    <p>Telefon çaldığı anda müşteri adı, son adresi ve ödeme tercihi milisaniyede ekrana düşer; iptalde kontör otomatik iade edilir.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="radar-quick-track">
+                <form id="form-vitrin-track" class="inline-track-form" autocomplete="off">
+                  <label for="input-vitrin-track" class="sr-only">Sipariş Takip Kodu</label>
+                  <input type="text" id="input-vitrin-track" name="trackingCode" placeholder="Müşteri Takip Kodu (Örn: PKT-...)" autocomplete="off">
+                  <button type="submit" class="btn btn-outline-light btn-sm">Canlı Takip</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TEK TIKLA CANLI DEMO GİRİŞ KARTLARI -->
+        <section id="canli-demo-bolumu" class="vitrin-section">
+          <div class="container">
+            <div class="section-heading">
+              <span class="section-eyebrow">ŞİFRESİZ TEK TIKLA DENEYİM</span>
+              <h2>5 Farklı Rolü Canlı Demo Verisiyle Hemen Test Edin</h2>
+              <p>Numara veya şifre yazmanıza gerek yok. İstediğiniz karta tıklayın, gerçek zamanlı Edremit demo operasyonuna anında bağlanın.</p>
+            </div>
+
+            <div id="demo-cards-grid" class="demo-cards-grid">
+              <article class="demo-role-card">
+                <div class="demo-role-top">
+                  <span class="demo-role-icon emerald">🛰️</span>
+                  <span class="badge badge-emerald">TAM YETKİ</span>
+                </div>
+                <h3>Operasyon Merkezi (Yönetici)</h3>
+                <p>Akıllı paket birleştirme, çift motorlu harita, bas-konuş telsiz, kontör cüzdanı, gün sonu kasa &amp; finansal düzeltme ve 10 pazaryeri simülatörü.</p>
+                <div class="demo-meta">Murat Yönetici • <code>05551001010</code></div>
+                <button type="button" id="demo-card-admin" class="btn btn-emerald btn-block" data-demo-login="admin">
+                  ⚡ Yönetici Paneline Tek Tıkla Gir
+                </button>
+              </article>
+
+              <article class="demo-role-card">
+                <div class="demo-role-top">
+                  <span class="demo-role-icon amber">🏢</span>
+                  <span class="badge badge-amber">3 MARKA / ŞUBE</span>
+                </div>
+                <h3>Çoklu Marka Grup İşletme</h3>
+                <p>Lezzet Grup altında Hatay Dönercisi, Burger İstasyonu ve Gece Kumrucusu şubeleri arasında geçiş, Caller ID ve 80mm zoomlu fiş ekranı.</p>
+                <div class="demo-meta">Lezzet Grup • <code>05552002020</code></div>
+                <button type="button" id="demo-card-group" class="btn btn-amber btn-block" data-demo-login="merchant_group">
+                  ⚡ Grup İşletme Ekranına Gir
+                </button>
+              </article>
+
+              <article class="demo-role-card">
+                <div class="demo-role-top">
+                  <span class="demo-role-icon sky">🏪</span>
+                  <span class="badge badge-sky">MUTFAK &amp; KASA</span>
+                </div>
+                <h3>Tekil İşletme &amp; Restoran</h3>
+                <p>Körfez Pide &amp; Lahmacun kasası: Arayan numaradan otomatik müşteri doldurma, Paket / Gel-Al / Salon siparişi ve kurye paket sohbeti.</p>
+                <div class="demo-meta">Körfez Pide • <code>05552002021</code></div>
+                <button type="button" id="demo-card-single" class="btn btn-outline-light btn-block" data-demo-login="merchant_single">
+                  ⚡ Tekil İşletme Ekranına Gir
+                </button>
+              </article>
+
+              <article class="demo-role-card">
+                <div class="demo-role-top">
+                  <span class="demo-role-icon emerald">🛵</span>
+                  <span class="badge badge-emerald">MOBİL SAHA PWA</span>
+                </div>
+                <h3>Kurye Mobil Uygulaması</h3>
+                <p>Rota sıralı paketler, parlak <strong>POS Cihazı Al</strong> uyarısı, Google + Yandex tek tık yol tarifi, sesli bildirim, telsiz ve anlık kazanç.</p>
+                <div class="demo-meta">Ahmet Yılmaz (POS'lu) • <code>05553003031</code></div>
+                <div class="demo-sub-actions">
+                  <button type="button" id="demo-card-courier" class="btn btn-emerald btn-block" data-demo-login="courier_1">
+                    ⚡ Ahmet (POS'lu Kurye) Gir
+                  </button>
+                  <div class="demo-mini-row">
+                    <button type="button" class="btn btn-ghost-sm" data-demo-login="courier_2">Burak (POS'suz)</button>
+                    <button type="button" class="btn btn-ghost-sm" data-demo-login="courier_3">Can (Araçlı)</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="demo-role-card">
+                <div class="demo-role-top">
+                  <span class="demo-role-icon purple">📍</span>
+                  <span class="badge badge-slate">SON MÜŞTERİ</span>
+                </div>
+                <h3>Müşteri Canlı Takip Ekranı</h3>
+                <p>SMS/WhatsApp takip bağlantısı ile adım adım sipariş durumu, tahmini varış dakikası ve güvenli teslimat doğrulama PIN kodu.</p>
+                <div class="demo-meta">Mahremiyet Korumalı Canlı Takip</div>
+                <button type="button" id="demo-card-track" class="btn btn-outline-light btn-block" data-demo-login="track">
+                  ⚡ Canlı Müşteri Takibini Aç
+                </button>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- İNTERAKTİF SÜRESİZ KONTÖR HESAPLAYICI -->
+        <section id="kontor-hesaplayici-bolumu" class="vitrin-section vitrin-section-alt">
+          <div class="container">
+            <div class="section-heading">
+              <span class="section-eyebrow">ŞEFFAF &amp; ADİL EKONOMİ</span>
+              <h2>Canlı Süresiz Kontör Hesaplayıcı</h2>
+              <p>Aylık sabit kira yok, taahhüt yok, ay sonunda yanan bakiye yok. Yalnızca tamamlanan gerçek sipariş başına kontör kullanın; iptal edilen paketin kontörü anında cüzdanınıza iade edilsin.</p>
+            </div>
+
+            <div class="calc-grid">
+              <div class="calc-controls-card">
+                <div class="calc-slider-head">
+                  <label for="calc-daily-slider">Günlük Ortalama Paket Sayınız</label>
+                  <strong id="calc-daily-val" class="calc-highlight-num">120 Paket / Gün</strong>
+                </div>
+                <input type="range" id="calc-daily-slider" min="10" max="1000" step="10" value="120" class="range-emerald">
+                <div class="calc-scale-labels">
+                  <span>10 paket</span>
+                  <span>250 paket</span>
+                  <span>500 paket</span>
+                  <span>1.000 paket</span>
+                </div>
+
+                <div class="calc-packages-title">Önerilen Süresiz Kontör Paketleri</div>
+                <div id="calc-package-tiers" class="calc-tiers-grid">
+                  <!-- Dinamik olarak /api/config creditPackages ile beslenir -->
+                </div>
+              </div>
+
+              <div class="calc-summary-card">
+                <div class="calc-summary-badge">AYLIK SABİT ABONELİK: 0 ₺</div>
+                <div class="calc-summary-rows">
+                  <div class="calc-row">
+                    <span>Aylık Tahmini Hacim (30 Gün)</span>
+                    <strong id="calc-monthly-orders">3.600 Paket</strong>
+                  </div>
+                  <div class="calc-row">
+                    <span>Seçili Paket Birim Maliyeti</span>
+                    <strong id="calc-unit-price" class="text-emerald">1,20 ₺ / Paket</strong>
+                  </div>
+                  <div class="calc-row">
+                    <span>Tahmini Aylık Kontör Kullanımı</span>
+                    <strong id="calc-monthly-cost">4.320 ₺</strong>
+                  </div>
+                  <div class="calc-row">
+                    <span>Kontör Geçerlilik Süresi</span>
+                    <strong class="text-amber">SÜRESİZ (Asla Yanmaz)</strong>
+                  </div>
+                  <div class="calc-row">
+                    <span>İptal &amp; Sıfır Bakiye Koruması</span>
+                    <strong>Otomatik İade + Sipariş Kaybı Yok</strong>
+                  </div>
+                </div>
+                <p class="calc-note">
+                  Kontörünüz gece yarısı sıfırlansa bile gelen siparişler asla silinmez; <code>Kontör Bekliyor</code> koruma havuzuna alınır ve bakiye yüklendiğinde tek tıkla sahaya iner.
+                </p>
+                <button type="button" id="btn-calc-register" class="btn btn-emerald btn-block btn-lg">
+                  🎁 100 Hediye Kontörle Şimdi Başla
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ÜSTÜN ÖZELLİKLER -->
+        <section id="ustun-ozellikler-bolumu" class="vitrin-section">
+          <div class="container">
+            <div class="section-heading">
+              <span class="section-eyebrow">KURUMSAL SAHA MİMARİSİ</span>
+              <h2>Neden Klasik Kurye Yazılımları Yerine PAKETÜS?</h2>
+            </div>
+            <div class="features-grid">
+              <article class="feature-card">
+                <span class="feature-badge">Pagate Motoru</span>
+                <h3>Akıllı Koridor &amp; 2-Opt Rota Birleştirme</h3>
+                <p>800 metre yakınlıktaki dükkanlardan aynı 38° açı koridoruna giden en fazla 3 siparişi gruplar; teslimat sırasını en kısa yol algoritmasıyla dizer.</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-badge">Saha Disiplini</span>
+                <h3>Kapıda POS &amp; Kurye Çevrimiçi Kilidi</h3>
+                <p>Kapıda kart ödemeli paketler POS cihazı olmayan kuryeye atanmaz. Kuryeler GPS yenilemesiyle kendiliğinden çevrimiçi olmaz; vardiya kontrolü nettir.</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-badge">Çift Harita + Gizlilik</span>
+                <h3>Leaflet Canlı Harita + Google &amp; Yandex</h3>
+                <p>Merkezde dükkan isimleri haritayı boğmaz, yalnızca tıklanınca açılır. Her adreste hem Google Maps hem Yandex tek tıkla yan yanadır; işletmelere kurye GPS'i sızdırılmaz.</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-badge">Canlı İletişim</span>
+                <h3>Bas-Konuş Saha Telsizi &amp; Paket Sohbeti</h3>
+                <p>Harici uygulama gerektirmeden tarayıcıdan sesli telsiz anonsu gönderin veya her siparişin kendi sohbet penceresinden restoran-kurye-merkez yazışın.</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-badge">Esnek Muhasebe</span>
+                <h3>Teslim Sonrası Finansal Düzeltme &amp; Kasa</h3>
+                <p>Müşteri kapıda nakitten karta döndüğünde teslim edilmiş paketin bile ödeme yöntemini ve tutarını sonradan düzeltin; gün sonu kasa şaşmasın.</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-badge">Hızlı Kasa</span>
+                <h3>Caller ID &amp; ESC/POS Fiş Ayrıştırıcı</h3>
+                <p>Arayan numaradan müşteriyi anında tanıyın; Windows POS yazıcı ajanıyla eski/yeni tüm adisyon programlarından 80mm fişleri otomatik yakalayın.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ENTEGRASYON VİTRİNİ -->
+        <section id="entegrasyon-vitrin-bolumu" class="vitrin-section vitrin-section-alt">
+          <div class="container">
+            <div class="section-heading">
+              <span class="section-eyebrow">OMNICHANNEL SİPARİŞ AKışı</span>
+              <h2>10+ Yemek Pazaryeri, Adisyon &amp; POS Kanalı Tek Havuzda</h2>
+            </div>
+            <div class="platform-pills-wrap">
+              <span class="platform-pill">Yemeksepeti</span>
+              <span class="platform-pill">GetirYemek</span>
+              <span class="platform-pill">Trendyol Go</span>
+              <span class="platform-pill">Migros Yemek</span>
+              <span class="platform-pill">Tıkla Gelsin</span>
+              <span class="platform-pill">Adisyo POS</span>
+              <span class="platform-pill">SambaPOS</span>
+              <span class="platform-pill">SepetTakip</span>
+              <span class="platform-pill">WhatsApp Sipariş</span>
+              <span class="platform-pill">Windows ESC/POS Ajanı</span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="vitrin-footer">
+        <div class="container vitrin-footer-inner">
+          <div>
+            <strong>PAKETÜS</strong> — Yeni Nesil Çok Kiracılı Kurye, POS &amp; Akıllı Rota Otomasyonu
+          </div>
+          <div class="footer-links">
+            <a href="/panel" data-nav="/panel">Operasyon Merkezi</a>
+            <a href="/isletme" data-nav="/isletme">İşletme Paneli</a>
+            <a href="/kurye" data-nav="/kurye">Kurye Mobil</a>
+            <a href="/takip/demo" data-nav="/takip/demo">Müşteri Takip</a>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+    <!-- =========================================================
+         GÜVENLİ ROL GİRİŞ & HIZLI DEMO KAPISI (/panel, /isletme, /kurye)
+         ========================================================= -->
+    <section id="view-auth-gate" class="app-view auth-gate-view" hidden>
+      <div class="auth-gate-shell">
+        <div class="auth-gate-top">
+          <a href="/" class="brand-logo-pill" data-nav="/">
+            <img src="/brand/logo.svg" alt="PAKETÜS" class="brand-logo-img" width="175" height="39">
+          </a>
+          <a href="/" class="btn btn-outline-light btn-sm" data-nav="/">← Vitrine Dön</a>
+        </div>
+
+        <div class="auth-gate-grid">
+          <div class="auth-card">
+            <span id="gate-role-badge" class="badge badge-emerald">OPERASYON GİRİŞİ</span>
+            <h1 id="gate-title">Operasyon Merkezine Giriş</h1>
+            <p id="gate-subtitle" class="text-muted">Telefon numaranız ve şifrenizle oturum açın veya sağdaki tek tık canlı demo hesaplarını kullanın.</p>
+
+            <form id="form-gate-login" class="stack-form" autocomplete="off">
+              <div class="form-field">
+                <label for="gate-phone">Telefon Numarası</label>
+                <input type="tel" id="gate-phone" name="phone" required placeholder="0555..." autocomplete="off">
+              </div>
+              <div class="form-field">
+                <label for="gate-password">Şifre</label>
+                <input type="password" id="gate-password" name="password" required placeholder="••••" autocomplete="off">
+              </div>
+              <div class="form-field">
+                <label for="gate-tenant">Operasyon Kodu (İsteğe Bağlı)</label>
+                <input type="text" id="gate-tenant" name="tenantSlug" placeholder="Örn: merkez" autocomplete="off">
+              </div>
+              <button type="submit" id="btn-gate-submit" class="btn btn-emerald btn-block btn-lg">Güvenli Giriş Yap</button>
+            </form>
+          </div>
+
+          <div class="auth-demo-panel">
+            <h2>⚡ Şifresiz Tek Tık Canlı Demo</h2>
+            <p class="text-muted">Demo ortamını anında açmak için aşağıdaki hazır profillerden birine tıklayın:</p>
+            <div class="stack-list">
+              <button type="button" id="btn-demo-admin" class="demo-quick-btn" data-demo-login="admin">
+                <span>🛰️ <strong>Murat Yönetici</strong> (Operasyon Merkezi)</span>
+                <span class="badge badge-emerald">/panel</span>
+              </button>
+              <button type="button" id="btn-demo-group" class="demo-quick-btn" data-demo-login="merchant_group">
+                <span>🏢 <strong>Lezzet Grup Restoranları</strong> (3 Şube Marka Grubu)</span>
+                <span class="badge badge-amber">/isletme</span>
+              </button>
+              <button type="button" id="btn-demo-single" class="demo-quick-btn" data-demo-login="merchant_single">
+                <span>🏪 <strong>Körfez Pide &amp; Lahmacun</strong> (Tekil İşletme)</span>
+                <span class="badge badge-sky">/isletme</span>
+              </button>
+              <button type="button" id="btn-demo-courier" class="demo-quick-btn" data-demo-login="courier_1">
+                <span>🛵 <strong>Ahmet Yılmaz</strong> (Motorlu Kurye • POS Var)</span>
+                <span class="badge badge-emerald">/kurye</span>
+              </button>
+              <button type="button" id="btn-demo-courier-nopos" class="demo-quick-btn" data-demo-login="courier_2">
+                <span>🛵 <strong>Burak Demir</strong> (Motorlu Kurye • POS Yok)</span>
+                <span class="badge badge-slate">/kurye</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         2. OPERASYON MERKEZİ / YÖNETİCİ PANELİ (/panel)
+         ========================================================= -->
+    <section id="view-admin" class="app-view workspace-view" hidden>
+      <header class="workspace-topbar">
+        <div class="topbar-brand-group">
+          <a href="/" class="brand-logo-pill" data-nav="/">
+            <img src="/brand/logo.svg" alt="PAKETÜS" class="brand-logo-img" width="162" height="36">
+          </a>
+          <div class="tenant-context">
+            <strong id="admin-tenant-name">Ege Hızlı Kurye &amp; Lojistik</strong>
+            <span id="admin-tenant-meta" class="tenant-sub">Edremit, Balıkesir • Yönetici</span>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <span id="admin-sse-badge" class="sse-pill online"><span class="live-dot"></span> Canlı Akış</span>
+          <button type="button" id="btn-admin-new-order" class="btn btn-emerald btn-sm">➕ Yeni Sipariş</button>
+          <button type="button" id="btn-admin-refresh" class="btn btn-outline-light btn-sm" title="Verileri Yenile">↻ Yenile</button>
+          <a href="/" class="btn btn-ghost-light btn-sm" data-nav="/">Vitrin</a>
+          <button type="button" id="btn-admin-logout" class="btn btn-ghost-danger btn-sm">Çıkış</button>
+        </div>
+      </header>
+
+      <!-- CANLI BAS-KONUŞ TELSİZ BARI -->
+      <div class="radio-bar" role="region" aria-label="Canlı Bas-Konuş Saha Telsizi">
+        <div class="radio-bar-left">
+          <span class="radio-badge">📻 TELSİZ</span>
+          <select id="admin-radio-channel" class="input-compact" aria-label="Telsiz Kanalı">
+            <option value="genel">Genel Saha</option>
+            <option value="acil">Acil Operasyon</option>
+            <option value="mutfak">Mutfak &amp; Kurye</option>
+          </select>
+          <button type="button" id="btn-admin-ptt" class="btn btn-ptt">🎙️ Bas-Konuş Kaydet</button>
+        </div>
+
+        <form id="form-admin-radio" class="radio-bar-form" autocomplete="off">
+          <input type="text" id="input-admin-radio-text" placeholder="Tüm ekibe hızlı sesli anons yazın (Örn: Havuzda POS'lu acil paket var)..." autocomplete="off">
+          <button type="submit" class="btn btn-amber btn-sm">📢 Anons Geç</button>
+        </form>
+
+        <div class="radio-bar-right">
+          <div id="admin-radio-last" class="radio-ticker">Son anons bekleniyor...</div>
+          <button type="button" id="btn-admin-radio-mute" class="btn btn-ghost-light btn-xs" title="Telsiz Sesi Aç/Kapat">🔊 Ses Açık</button>
+          <button type="button" id="btn-admin-radio-history" class="btn btn-outline-light btn-xs">Son 25</button>
+        </div>
+      </div>
+
+      <div class="workspace-container">
+        <!-- KUŞBAKIŞI CANLI KPI ŞERİDİ -->
+        <div id="admin-kpi-grid" class="kpi-strip">
+          <div class="kpi-card">
+            <span class="kpi-label">Bekleyen Havuz</span>
+            <strong id="kpi-pending" class="kpi-value">0</strong>
+            <span id="kpi-pending-sub" class="kpi-sub">Dağıtıma hazır paket</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Aktif Rota &amp; Yolda</span>
+            <strong id="kpi-active-batches" class="kpi-value text-emerald">0</strong>
+            <span id="kpi-active-sub" class="kpi-sub">Saha teslimatında</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Çevrimiçi Kurye</span>
+            <strong id="kpi-online-couriers" class="kpi-value">0 / 0</strong>
+            <span id="kpi-pos-sub" class="kpi-sub">POS cihazlı saha gücü</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Süresiz Kontör</span>
+            <strong id="kpi-credits" class="kpi-value text-amber">0</strong>
+            <span id="kpi-credits-sub" class="kpi-sub">Yanmayan bakiye</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Günlük Paket Cirosu</span>
+            <strong id="kpi-turnover" class="kpi-value">0 ₺</strong>
+            <span id="kpi-delivered-sub" class="kpi-sub">0 teslimat tamamlandı</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Operasyon Kârı</span>
+            <strong id="kpi-net-profit" class="kpi-value text-emerald">0 ₺</strong>
+            <span id="kpi-revenue-sub" class="kpi-sub">Servis geliri - hakediş</span>
+          </div>
+        </div>
+
+        <!-- SEKMELER (role="tablist" + button[type="button"][aria-selected]) -->
+        <div class="tab-bar" role="tablist" aria-label="Operasyon Merkezi Sekmeleri">
+          <button type="button" role="tab" id="tab-btn-havuz" class="tab-btn" aria-selected="true" aria-controls="panel-havuz" data-admin-tab="havuz">
+            🧠 Akıllı Havuz &amp; Rota Birleştirme
+          </button>
+          <button type="button" role="tab" id="tab-btn-harita" class="tab-btn" aria-selected="false" aria-controls="panel-harita" data-admin-tab="harita">
+            🗺️ Canlı Harita (Çift Motor)
+          </button>
+          <button type="button" role="tab" id="tab-btn-isletmeler" class="tab-btn" aria-selected="false" aria-controls="panel-isletmeler" data-admin-tab="isletmeler">
+            🏪 İşletmeler, Gruplar &amp; Tarife
+          </button>
+          <button type="button" role="tab" id="tab-btn-filo" class="tab-btn" aria-selected="false" aria-controls="panel-filo" data-admin-tab="filo">
+            🛵 Kurye Filo Yönetimi
+          </button>
+          <button type="button" role="tab" id="tab-btn-kontor" class="tab-btn" aria-selected="false" aria-controls="panel-kontor" data-admin-tab="kontor">
+            💎 Süresiz Kontör Cüzdanı
+          </button>
+          <button type="button" role="tab" id="tab-btn-mutabakat" class="tab-btn" aria-selected="false" aria-controls="panel-mutabakat" data-admin-tab="mutabakat">
+            📊 Gün Sonu Kasa &amp; Mutabakat
+          </button>
+          <button type="button" role="tab" id="tab-btn-entegrasyon" class="tab-btn" aria-selected="false" aria-controls="panel-entegrasyon" data-admin-tab="entegrasyon">
+            🔌 10+ Entegrasyon &amp; Fiş/Caller ID
+          </button>
+        </div>
+
+        <!-- SEKME 1: AKILLI HAVUZ & PAKET BİRLEŞTİRME -->
+        <div id="panel-havuz" role="tabpanel" aria-labelledby="tab-btn-havuz" class="tab-panel">
+          <div class="panel-action-bar">
+            <div class="panel-action-title">
+              <h2>Pagate Tarzı Akıllı Havuz &amp; Otomatik Paket Birleştirme</h2>
+              <p>Yakın dükkanlar (≤0.8 km) ve aynı yön koridorundaki (≤38°) paketleri 2-opt sırasıyla birleştirip POS uyumlu kuryeye atayın.</p>
+            </div>
+            <div class="panel-action-buttons">
+              <button type="button" id="btn-preview-batches" class="btn btn-outline-emerald">
+                🔍 Akıllı Rota Gruplarını Önizle
+              </button>
+              <button type="button" id="btn-auto-assign" class="btn btn-emerald">
+                ⚡ Tek Tıkla POS Uyumlu Dağıt
+              </button>
+              <button type="button" id="btn-havuz-new-order" class="btn btn-amber">
+                ➕ Sipariş Aç
+              </button>
+            </div>
+          </div>
+
+          <div id="smart-batches-box" class="smart-batches-box">
+            <!-- Akıllı paket birleştirme önizleme kartları buraya basılır -->
+          </div>
+
+          <div class="filter-toolbar">
+            <div class="filter-pills" role="group" aria-label="Sipariş Durum Filtresi">
+              <button type="button" class="chip-btn active" data-order-filter="all">Tümü</button>
+              <button type="button" class="chip-btn" data-order-filter="pending">Bekleyen Havuz</button>
+              <button type="button" class="chip-btn" data-order-filter="pending_credit">Kontör Bekleyen</button>
+              <button type="button" class="chip-btn" data-order-filter="active">Atandı / Yolda</button>
+              <button type="button" class="chip-btn" data-order-filter="delivered">Teslim Edilen</button>
+              <button type="button" class="chip-btn" data-order-filter="cancelled">İptal / İade</button>
+            </div>
+            <div class="filter-search">
+              <input type="search" id="admin-order-search" placeholder="Takip kodu, müşteri, mahalle veya dükkan ara..." autocomplete="off">
+            </div>
+          </div>
+
+          <div class="table-wrapper" tabindex="0" role="region" aria-label="Operasyon Sipariş Tablosu">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Paket / Kaynak</th>
+                  <th>İşletme &amp; Müşteri</th>
+                  <th>Adres &amp; Çift Navigasyon</th>
+                  <th>Ödeme &amp; Tutar</th>
+                  <th>Grup &amp; Kurye Atama</th>
+                  <th>Durum &amp; İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="admin-orders-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SEKME 2: ÇİFT MOTORLU CANLI HARİTA -->
+        <div id="panel-harita" role="tabpanel" aria-labelledby="tab-btn-harita" class="tab-panel" hidden>
+          <div class="map-workspace-grid">
+            <div class="map-main-card">
+              <div class="map-card-toolbar">
+                <div>
+                  <h2>Çift Motorlu Canlı Saha Haritası</h2>
+                  <p class="text-muted">Dükkan isimleri haritayı boğmaz, <strong>yalnızca pine tıklandığında</strong> açılır. Haritaya tıklayarak dükkan pini kaydedebilirsiniz.</p>
+                </div>
+                <div class="map-pin-Controls">
+                  <select id="map-pin-shop-select" class="input-compact" aria-label="Pin Seçilecek İşletme">
+                    <option value="">📌 Haritadan Dükkan Pini Düzenle (Kapalı)</option>
+                  </select>
+                  <button type="button" id="btn-map-fit" class="btn btn-outline-emerald btn-sm">Merkeze Odakla</button>
+                </div>
+              </div>
+              <div id="map-pin-mode-banner" class="pin-mode-banner" hidden>
+                📌 <strong>Dükkan Pin Seçim Modu Aktif:</strong> Seçili işletmenin tam kapı konumunu kaydetmek için harita üzerinde istediğiniz noktaya tıklayın!
+              </div>
+              <div class="map-stage-wrap">
+                <div id="admin-leaflet-map" class="leaflet-stage" aria-label="Canlı Operasyon Haritası"></div>
+                <div id="admin-fallback-map" class="fallback-map-stage" hidden aria-label="Vektör Saha Haritası"></div>
+              </div>
+              <div class="map-legend-row">
+                <span><i class="legend-dot shop"></i> İşletme Pini (Tıkla → İsim &amp; Detay)</span>
+                <span><i class="legend-dot courier-pos"></i> Çevrimiçi Kurye (POS Var)</span>
+                <span><i class="legend-dot courier-nopos"></i> Çevrimiçi Kurye (POS Yok)</span>
+                <span><i class="legend-dot order"></i> Aktif Teslimat Hedefi</span>
+              </div>
+            </div>
+
+            <aside class="map-side-panel">
+              <div class="side-section">
+                <h3>🛵 Canlı Saha Kuryeleri</h3>
+                <div id="map-couriers-list" class="compact-cards-list"></div>
+              </div>
+              <div class="side-section">
+                <h3>🏪 İşletme Konum &amp; Çift Harita Rehberi</h3>
+                <div id="map-shops-list" class="compact-cards-list"></div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- SEKME 3: İŞLETMELER, ÇOKLU MARKA GRUPLARI & BÖLGE/TARİFE -->
+        <div id="panel-isletmeler" role="tabpanel" aria-labelledby="tab-btn-isletmeler" class="tab-panel" hidden>
+          <div class="panel-action-bar">
+            <div class="panel-action-title">
+              <h2>İşletmeler, Çoklu Marka Grupları &amp; Özel Tarife Yönetimi</h2>
+              <p>Grup restoranlar altında çoklu şube/marka yönetin; işletme bazlı km, bölge veya komisyon anlaşması tanımlayın.</p>
+            </div>
+            <div class="panel-action-buttons">
+              <button type="button" id="btn-add-shop" class="btn btn-emerald">➕ Yeni İşletme / Şube Ekle</button>
+            </div>
+          </div>
+
+          <div id="merchant-groups-strip" class="groups-strip"></div>
+
+          <div class="table-wrapper" tabindex="0" role="region" aria-label="İşletmeler ve Tarifeler Tablosu">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>İşletme &amp; Marka Grubu</th>
+                  <th>Telefon &amp; Adres</th>
+                  <th>Pin &amp; Navigasyon</th>
+                  <th>Tarife Modeli &amp; Ücret</th>
+                  <th>Oto-Fiş</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="admin-shops-tbody"></tbody>
+            </table>
+          </div>
+
+          <div class="subsection-block">
+            <h3>📏 Mesafe Bölgeleri (Zone Taban Fiyatları)</h3>
+            <div class="table-wrapper" tabindex="0" role="region" aria-label="Mesafe Bölgeleri Tablosu">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Bölge Adı</th>
+                    <th>Mesafe Aralığı</th>
+                    <th>İşletme Servis Ücreti</th>
+                    <th>Kurye Baz Hakedişi</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-zones-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEKME 4: KURYE FİLO YÖNETİMİ -->
+        <div id="panel-filo" role="tabpanel" aria-labelledby="tab-btn-filo" class="tab-panel" hidden>
+          <div class="panel-action-bar">
+            <div class="panel-action-title">
+              <h2>Kurye Filosu, POS Zimmeti &amp; Hakediş Parametreleri</h2>
+              <p>Kuryeler sayfa yenilemesiyle kendiliğinden çevrimiçi olmaz. Mesai, mola, POS zimmeti ve kapasite ayarlarını buradan yönetin.</p>
+            </div>
+            <div class="panel-action-buttons">
+              <button type="button" id="btn-add-courier" class="btn btn-emerald">➕ Yeni Kurye Tanımla</button>
+            </div>
+          </div>
+
+          <div class="table-wrapper" tabindex="0" role="region" aria-label="Kurye Filo Tablosu">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Kurye &amp; Araç</th>
+                  <th>Vardiya / Mola Durumu</th>
+                  <th>POS Cihazı</th>
+                  <th>Batarya &amp; Kapasite</th>
+                  <th>Hakediş (Paket + Km)</th>
+                  <th>Konum &amp; İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="admin-couriers-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SEKME 5: SÜRESİZ KONTÖR CÜZDANI -->
+        <div id="panel-kontor" role="tabpanel" aria-labelledby="tab-btn-kontor" class="tab-panel" hidden>
+          <div class="wallet-hero-grid">
+            <div class="wallet-balance-card">
+              <div class="wallet-top-row">
+                <span class="badge badge-amber">SÜRESİZ CÜZDAN — YANMAYAN KONTÖR</span>
+                <button type="button" id="btn-toggle-credits-mode" class="btn btn-outline-light btn-xs">Kontör Modu: Açık</button>
+              </div>
+              <div class="wallet-big-number" id="wallet-balance-num">0 Kontör</div>
+              <p class="text-muted">Tamamlanan veya havuza alınan her sipariş 1 kontör düşer. İptal edilen siparişin kontörü otomatik ve tek seferlik olarak iade edilir.</p>
+              <div class="wallet-quick-packs">
+                <button type="button" class="btn btn-emerald btn-sm" data-quick-topup="500">+500 Kontör Yükle</button>
+                <button type="button" class="btn btn-emerald btn-sm" data-quick-topup="2000">+2.000 Kontör Yükle</button>
+                <button type="button" class="btn btn-amber btn-sm" data-quick-topup="10000">+10.000 Kontör Yükle</button>
+              </div>
+            </div>
+
+            <form id="form-custom-topup" class="wallet-custom-card" autocomplete="off">
+              <h3>Özel Kontör Yükleme / Düzeltme</h3>
+              <div class="form-field">
+                <label for="input-topup-amount">Kontör Miktarı</label>
+                <input type="number" id="input-topup-amount" value="250" step="1" required autocomplete="off">
+              </div>
+              <div class="form-field">
+                <label for="input-topup-note">Açıklama / Fatura Notu</label>
+                <input type="text" id="input-topup-note" placeholder="Örn: Havale ile 250 kontör paketi" autocomplete="off">
+              </div>
+              <button type="submit" class="btn btn-emerald btn-block">💎 Bakiyeye Tanımla</button>
+            </form>
+          </div>
+
+          <div id="pending-credit-orders-box" class="pending-credit-box" hidden>
+            <div class="pending-credit-head">
+              <h3>⏳ Kontör Bekleyen Siparişler (<code>pending_credit</code> Koruması)</h3>
+              <p>Bakiye sıfırken gelen bu siparişler silinmedi. Kontör yüklendikten sonra tek tıkla havuza aktarabilirsiniz.</p>
+            </div>
+            <div id="pending-credit-list" class="compact-cards-list"></div>
+          </div>
+
+          <div class="subsection-block">
+            <h3>📜 Kontör Hareket Defteri</h3>
+            <div class="table-wrapper" tabindex="0" role="region" aria-label="Kontör Hareket Tablosu">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Tarih / Saat</th>
+                    <th>İşlem Nedeni</th>
+                    <th>Değişim</th>
+                    <th>Kalan Bakiye</th>
+                    <th>Sipariş / Not</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-ledger-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEKME 6: GÜN SONU KASA, CARİ MUTABAKAT & FİNANSAL DÜZELTME -->
+        <div id="panel-mutabakat" role="tabpanel" aria-labelledby="tab-btn-mutabakat" class="tab-panel" hidden>
+          <div class="panel-action-bar">
+            <div class="panel-action-title">
+              <h2>Gün Sonu Kasa, Kurye Tahsilat &amp; İşletme Cari Mutabakatı</h2>
+              <p>Teslim edilmiş paketlerin bile tutarını ve ödeme tipini (Nakit ↔ Kapıda POS ↔ Online) sonradan düzeltebilirsiniz.</p>
+            </div>
+            <div class="panel-action-buttons">
+              <label for="reconcile-date" class="sr-only">Mutabakat Tarihi</label>
+              <input type="date" id="reconcile-date" class="input-compact" autocomplete="off">
+              <button type="button" id="btn-load-reconcile" class="btn btn-emerald btn-sm">Raporu Getir</button>
+            </div>
+          </div>
+
+          <div id="reconcile-summary-cards" class="kpi-strip"></div>
+
+          <div class="two-col-tables">
+            <div>
+              <h3>🛵 Kurye Nakit &amp; POS Kasa Teslim Özeti</h3>
+              <div class="table-wrapper" tabindex="0" role="region" aria-label="Kurye Kasa Mutabakat Tablosu">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Kurye</th>
+                      <th>Teslimat</th>
+                      <th>Nakit Tahsilat</th>
+                      <th>Kapıda POS</th>
+                      <th>Hakediş</th>
+                    </tr>
+                  </thead>
+                  <tbody id="reconcile-couriers-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h3>🏪 İşletme Cari &amp; Servis Ücreti Özeti</h3>
+              <div class="table-wrapper" tabindex="0" role="region" aria-label="İşletme Cari Mutabakat Tablosu">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>İşletme</th>
+                      <th>Paket</th>
+                      <th>Paket Cirosu</th>
+                      <th>Kurye Servis Borcu</th>
+                    </tr>
+                  </thead>
+                  <tbody id="reconcile-shops-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsection-block">
+            <h3>✏️ Sipariş Bazlı Finansal Düzeltme Merkezi (Teslim Edilmiş Paketler Dahil)</h3>
+            <div class="table-wrapper" tabindex="0" role="region" aria-label="Finansal Düzeltme Tablosu">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Takip Kodu &amp; Durum</th>
+                    <th>İşletme &amp; Müşteri</th>
+                    <th>Ödeme Yöntemi</th>
+                    <th>Sipariş Tutarı</th>
+                    <th>Servis / Hakediş</th>
+                    <th>Düzelt</th>
+                  </tr>
+                </thead>
+                <tbody id="reconcile-orders-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEKME 7: OMNICHANNEL ENTEGRASYON, TERMAL FİŞ & CALLER ID -->
+        <div id="panel-entegrasyon" role="tabpanel" aria-labelledby="tab-btn-entegrasyon" class="tab-panel" hidden>
+          <div class="panel-action-bar">
+            <div class="panel-action-title">
+              <h2>10+ Pazaryeri / POS Webhook, ESC/POS Fiş Okuyucu &amp; Caller ID Merkezi</h2>
+              <p>Gerçek Türkiye sokak/koordinat verisiyle tek tık canlı pazaryeri siparişi simüle edin veya ham termal fiş metnini ayrıştırın.</p>
+            </div>
+            <div class="panel-action-buttons">
+              <label for="sim-shop-select" class="text-muted">Hedef Şube:</label>
+              <select id="sim-shop-select" class="input-compact"></select>
+              <a href="/scripts/pos-yazici-ajan.ps1" download class="btn btn-outline-emerald btn-sm">⬇️ Windows POS Yazıcı Ajanı (.ps1)</a>
+            </div>
+          </div>
+
+          <div id="integrations-platforms-grid" class="platforms-sim-grid"></div>
+
+          <div class="two-col-tables">
+            <!-- FİŞ AYRIŞTIRICI -->
+            <div class="surface-card">
+              <div class="card-head-between">
+                <h3>🧾 ESC/POS Türkçe Termal Fiş Ayrıştırıcı</h3>
+                <div class="btn-row-xs">
+                  <button type="button" id="btn-sample-receipt-pos" class="btn btn-ghost-sm">Örnek POS Fişi</button>
+                  <button type="button" id="btn-sample-receipt-cash" class="btn btn-ghost-sm">Örnek Nakit Fiş</button>
+                </div>
+              </div>
+              <textarea id="textarea-raw-receipt" rows="7" placeholder="Ham ESC/POS veya adisyon fiş metnini buraya yapıştırın..."></textarea>
+              <div class="btn-row-gap">
+                <button type="button" id="btn-parse-receipt" class="btn btn-emerald btn-sm">🔍 Fiş Metnini Ayrıştır</button>
+                <button type="button" id="btn-create-from-receipt" class="btn btn-amber btn-sm" disabled>➕ Ayrıştırılan Fişi Havuza Düşür</button>
+              </div>
+              <div id="parsed-receipt-result" class="parsed-result-box" hidden></div>
+            </div>
+
+            <!-- CALLER ID SİMÜLATÖRÜ -->
+            <div class="surface-card">
+              <div class="card-head-between">
+                <h3>📞 Canlı Caller ID (Arayan Numara Tanıma) Testi</h3>
+                <span class="badge badge-emerald">Milisaniye Hafıza</span>
+              </div>
+              <p class="text-muted">Santral veya USB Caller ID cihazından gelen numarayı simüle edin; müşterinin son adresi ve ödeme tercihi anında gelsin.</p>
+              <div class="caller-sample-chips">
+                <button type="button" class="chip-btn" data-sample-caller="05321112233">0532 111 22 33</button>
+                <button type="button" class="chip-btn" data-sample-caller="05443334455">0544 333 44 55</button>
+                <button type="button" class="chip-btn" data-sample-caller="05327776655">0532 777 66 55</button>
+              </div>
+              <form id="form-admin-caller-test" class="inline-search-row" autocomplete="off">
+                <input type="tel" id="input-admin-caller-phone" placeholder="Arayan numara: 05xx..." autocomplete="off">
+                <button type="submit" class="btn btn-emerald btn-sm">Sorgula</button>
+              </form>
+              <div id="admin-caller-result" class="parsed-result-box" hidden></div>
+
+              <h4 class="sub-h4">Son Gelen Webhook Kayıtları</h4>
+              <div class="table-wrapper compact-table-wrap" tabindex="0" role="region" aria-label="Webhook Kayıtları Tablosu">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Kanal</th>
+                      <th>Dış No</th>
+                      <th>Durum</th>
+                      <th>Özet</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-webhooks-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. İŞLETME / RESTORAN & MUTFAK PANELİ (/isletme)
+         (KESİN KURAL: Kurye GPS haritası burada ASLA gösterilmez!)
+         ========================================================= -->
+    <section id="view-merchant" class="app-view workspace-view" hidden>
+      <header class="workspace-topbar">
+        <div class="topbar-brand-group">
+          <a href="/" class="brand-logo-pill" data-nav="/">
+            <img src="/brand/logo.svg" alt="PAKETÜS" class="brand-logo-img" width="160" height="36">
+          </a>
+          <div class="tenant-context">
+            <strong id="merchant-header-title">İşletme &amp; Mutfak Paneli</strong>
+            <span id="merchant-header-sub" class="tenant-sub">Canlı Sipariş &amp; Kasa Ekranı</span>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <span id="merchant-courier-availability" class="badge badge-emerald">🛵 Müsait Kurye: 0</span>
+          <button type="button" id="btn-merchant-radio-ping" class="btn btn-amber btn-sm">📻 Merkeze Sesli Not</button>
+          <button type="button" id="btn-merchant-refresh" class="btn btn-outline-light btn-sm">↻ Yenile</button>
+          <button type="button" id="btn-merchant-logout" class="btn btn-ghost-danger btn-sm">Çıkış</button>
+        </div>
+      </header>
+
+      <div class="workspace-container">
+        <!-- ÇOKLU MARKA / ŞUBE SEÇİCİ -->
+        <div id="merchant-brand-bar" class="brand-switcher-bar" hidden>
+          <div class="brand-switcher-label">🏢 Çoklu Marka / Şube Seçimi:</div>
+          <div id="merchant-brand-pills" class="brand-pills-row"></div>
+        </div>
+
+        <div class="merchant-grid">
+          <!-- SOL: CALLER ID + HIZLI SİPARİŞ FORMU -->
+          <div class="surface-card merchant-order-card">
+            <div class="card-head-between">
+              <h2>📞 Hızlı Sipariş &amp; Caller ID Kasa</h2>
+              <span id="merchant-caller-badge" class="badge badge-slate">Numara Bekleniyor</span>
+            </div>
+
+            <form id="form-merchant-order" class="stack-form" autocomplete="off">
+              <div id="merchant-form-shop-wrap" class="form-field">
+                <label for="merch-shop-select">Çıkış Yapacak Marka / Şube</label>
+                <select id="merch-shop-select" name="shopId"></select>
+              </div>
+
+              <!-- SIPARİŞ TİPİ: PAKET / GEL-AL / SALON -->
+              <div class="form-field">
+                <label>Sipariş Tipi</label>
+                <div class="segmented-group" id="merch-order-type-group">
+                  <button type="button" class="seg-btn active" data-order-type="delivery">🛵 Paket Servis</button>
+                  <button type="button" class="seg-btn" data-order-type="takeaway">🛍️ Gel-Al</button>
+                  <button type="button" class="seg-btn" data-order-type="dine_in">🍽️ Salon / Masa</button>
+                </div>
+                <input type="hidden" id="merch-order-type" name="orderType" value="delivery">
+              </div>
+
+              <!-- CALLER ID TELEFON KUTUSU -->
+              <div class="form-field caller-id-highlight">
+                <div class="label-between">
+                  <label for="merch-customer-phone">Müşteri Telefonu (Caller ID Otomatik Tanır)</label>
+                  <button type="button" id="btn-merch-fill-sample-caller" class="link-btn">Örnek Kayıtlı Müşteri Dene</button>
+                </div>
+                <input type="tel" id="merch-customer-phone" name="customerPhone" placeholder="05xx xxx xx xx girildiği anda bilgileri doldurur" required autocomplete="off">
+                <div id="merch-caller-hint" class="caller-hint-text">Numara yazıldığında kayıtlı müşteri adı, adresi ve ödeme tercihi otomatik gelir.</div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-field">
+                  <label for="merch-customer-name">Müşteri Adı / Masa</label>
+                  <input type="text" id="merch-customer-name" name="customerName" required placeholder="Ad Soyad" autocomplete="off">
+                </div>
+                <div class="form-field">
+                  <label for="merch-neighborhood">Mahalle / Bölge</label>
+                  <input type="text" id="merch-neighborhood" name="neighborhood" placeholder="Örn: Cumhuriyet Mah." autocomplete="off">
+                </div>
+              </div>
+
+              <div class="form-field" id="merch-address-field">
+                <label for="merch-customer-address">Açık Teslimat Adresi</label>
+                <textarea id="merch-customer-address" name="customerAddress" rows="2" required placeholder="Cadde, sokak, bina ve daire no..."></textarea>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-field">
+                  <label for="merch-order-amount">Sipariş Tutarı (₺)</label>
+                  <input type="number" id="merch-order-amount" name="orderAmount" step="0.5" min="0" required placeholder="450" autocomplete="off">
+                </div>
+                <div class="form-field">
+                  <label for="merch-payment-method">Ödeme Tercihi</label>
+                  <select id="merch-payment-method" name="paymentMethod">
+                    <option value="cash">💵 Kapıda Nakit</option>
+                    <option value="card_on_delivery">💳 Kapıda Kredi Kartı (POS)</option>
+                    <option value="online_paid">✅ Online Ödenmiş</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="merch-items-summary">Ürün Özeti</label>
+                <input type="text" id="merch-items-summary" name="itemsSummary" placeholder="Örn: 2x Zurna Dürüm Menü, 1L Ayran" autocomplete="off">
+              </div>
+
+              <div class="form-field">
+                <label for="merch-notes">Mutfak / Kurye Notu</label>
+                <input type="text" id="merch-notes" name="notes" placeholder="Örn: Zile basmayın, POS cihazı unutulmasın" autocomplete="off">
+              </div>
+
+              <button type="submit" class="btn btn-emerald btn-block btn-lg">🚀 Siparişi Kaydet &amp; Kurye Çağır</button>
+            </form>
+          </div>
+
+          <!-- SAĞ: AKTİF MUTFAK & SİPARİŞ LİSTESİ -->
+          <div class="surface-card merchant-orders-panel">
+            <div class="card-head-between">
+              <div>
+                <h2>📦 Canlı Mutfak &amp; Kurye Durum Listesi</h2>
+                <p class="text-muted">80mm termal fişi yakınlaştırarak inceleyebilir veya paket üzerinden doğrudan kurye ile yazışabilirsiniz.</p>
+              </div>
+              <div class="merchant-mini-stats" id="merchant-mini-stats"></div>
+            </div>
+
+            <div class="filter-pills" role="group" aria-label="İşletme Sipariş Filtresi">
+              <button type="button" class="chip-btn active" data-merch-filter="all">Tümü</button>
+              <button type="button" class="chip-btn" data-merch-filter="pending">Hazırlanan / Havuz</button>
+              <button type="button" class="chip-btn" data-merch-filter="active">Kuryede / Yolda</button>
+              <button type="button" class="chip-btn" data-merch-filter="delivered">Teslim Edilen</button>
+            </div>
+
+            <div class="table-wrapper" tabindex="0" role="region" aria-label="İşletme Siparişleri Tablosu">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Takip &amp; Şube</th>
+                    <th>Müşteri &amp; Tip</th>
+                    <th>Tutar &amp; Ödeme</th>
+                    <th>Kurye Durumu</th>
+                    <th>Fiş, Sohbet &amp; İşlem</th>
+                  </tr>
+                </thead>
+                <tbody id="merchant-orders-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. KURYE MOBİL SAHA UYGULAMASI (/kurye)
+         ========================================================= -->
+    <section id="view-courier" class="app-view courier-view" hidden>
+      <header class="courier-topbar">
+        <div class="courier-id-block">
+          <a href="/" class="courier-mini-brand" data-nav="/" title="PAKETÜS Ana Sayfa">
+            <img src="/brand/icon-192.svg" alt="PAKETÜS" width="36" height="36">
+          </a>
+          <div>
+            <strong id="courier-name-title">Kurye Saha Ekranı</strong>
+            <div class="courier-badges-inline">
+              <span id="courier-pos-badge" class="badge badge-amber">💳 POS Zimmetli</span>
+              <span id="courier-battery-badge" class="badge badge-slate">🔋 %100</span>
+            </div>
+          </div>
+        </div>
+        <div class="courier-top-actions">
+          <button type="button" id="btn-courier-sound-test" class="btn btn-ghost-light btn-xs" title="Bildirim Sesi">🔔 Ses</button>
+          <button type="button" id="btn-courier-refresh" class="btn btn-outline-light btn-xs">↻</button>
+          <button type="button" id="btn-courier-logout" class="btn btn-ghost-danger btn-xs">Çıkış</button>
+        </div>
+      </header>
+
+      <div class="courier-shell">
+        <!-- KAZANÇ + ORTALAMA TESLİMAT SÜRESİ (14.2 dk) + MESAİ ŞALTERİ -->
+        <div class="courier-perf-card">
+          <div class="courier-metrics-row">
+            <div class="c-metric">
+              <span>Bugünkü Hakediş</span>
+              <strong id="courier-earning-val" class="text-emerald">0,00 ₺</strong>
+            </div>
+            <div class="c-metric">
+              <span>Ort. Teslimat</span>
+              <strong id="courier-avg-min" class="text-amber">14.2 dk</strong>
+            </div>
+            <div class="c-metric">
+              <span>Aktif Yük</span>
+              <strong id="courier-load-val">0 Paket</strong>
+            </div>
+          </div>
+
+          <div class="courier-shift-controls">
+            <button type="button" id="btn-courier-online-toggle" class="btn btn-shift-toggle">
+              ● Çevrimiçi (Mesai Açık)
+            </button>
+            <button type="button" id="btn-courier-break-toggle" class="btn btn-outline-light">
+              ☕ Mola
+            </button>
+            <button type="button" id="btn-courier-gps-ping" class="btn btn-ghost-light" title="Mesai durumunu değiştirmeden sadece GPS konumunu bildirir">
+              📍 Konum Bildir
+            </button>
+          </div>
+        </div>
+
+        <!-- KURYE BAS-KONUŞ SAHA TELSİZİ -->
+        <div class="courier-radio-card">
+          <div class="courier-radio-row">
+            <button type="button" id="btn-courier-ptt" class="btn btn-ptt btn-ptt-mobile">
+              🎙️ BAS-KONUŞ TELSİZ
+            </button>
+            <form id="form-courier-radio" class="courier-radio-form" autocomplete="off">
+              <input type="text" id="input-courier-radio" placeholder="Merkeze hızlı sesli anons..." autocomplete="off">
+              <button type="submit" class="btn btn-amber btn-sm">Gönder</button>
+            </form>
+          </div>
+          <div class="courier-quick-chips">
+            <button type="button" class="chip-btn" data-courier-Quick-radio="Dükkandayım, paketi teslim alıyorum.">🏪 Dükkandayım</button>
+            <button type="button" class="chip-btn" data-courier-Quick-radio="Müşteri adreste kapıyı açmıyor, merkez arayabilir mi?">🚪 Kapı Açılmıyor</button>
+            <button type="button" class="chip-btn" data-courier-Quick-radio="Paket teslim edildi, yeni pakete hazırım.">✅ Teslim Tamam</button>
+          </div>
+          <div id="courier-radio-last" class="radio-ticker">📻 Telsiz hazır — Merkez anonsları anlık sesli okunur.</div>
+        </div>
+
+        <!-- ROTA SIRASINA GÖRE AKTİF PAKET KARTLARI -->
+        <div class="courier-section-head">
+          <h2>🧭 Rota Sıralı Aktif Paketleriniz</h2>
+          <span id="courier-route-hint" class="badge badge-emerald">2-Opt Optimize Sıra</span>
+        </div>
+        <div id="courier-active-orders" class="courier-orders-stack"></div>
+
+        <!-- SON TESLİM EDİLENLER -->
+        <div class="courier-section-head">
+          <h3>✅ Son Tamamlanan Teslimatlar</h3>
+        </div>
+        <div class="table-wrapper" tabindex="0" role="region" aria-label="Son Teslim Edilen Paketler">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Kod</th>
+                <th>İşletme &amp; Müşteri</th>
+                <th>Ödeme</th>
+                <th>Hakediş</th>
+              </tr>
+            </thead>
+            <tbody id="courier-delivered-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. MÜŞTERİ CANLI TAKİP EKRANI (/takip/:code)
+         ========================================================= -->
+    <section id="view-track" class="app-view track-view" hidden>
+      <header class="vitrin-header">
+        <div class="container vitrin-header-inner">
+          <a href="/" class="brand-logo-pill" data-nav="/">
+            <img src="/brand/logo.svg" alt="PAKETÜS" class="brand-logo-img" width="170" height="38">
+          </a>
+          <div class="vitrin-header-actions">
+            <button type="button" id="btn-track-refresh" class="btn btn-outline-light btn-sm">↻ Durumu Yenile</button>
+            <a href="/" class="btn btn-emerald btn-sm" data-nav="/">Ana Sayfa</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container track-container">
+        <div class="track-search-card">
+          <form id="form-track-lookup" class="inline-search-row" autocomplete="off">
+            <label for="input-track-code" class="sr-only">Takip Kodu</label>
+            <input type="text" id="input-track-code" placeholder="Takip Kodunuzu Girin (Örn: PKT-1001)" autocomplete="off">
+            <button type="submit" class="btn btn-emerald">Sorgula</button>
+          </form>
+        </div>
+
+        <div id="track-result-box" class="track-result-card">
+          <!-- Canlı takip adımları, tahmini dakika ve doğrulama PIN kodu buraya basılır -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================
+       YEREL <dialog> MODALLAR (role="dialog" / aria-modal YOK!)
+       ========================================================= -->
+
+  <!-- 1. GENEL GİRİŞ MODALI -->
+  <dialog id="modal-login" aria-labelledby="title-modal-login" class="paketus-dialog">
+    <div class="dialog-header">
+      <h2 id="title-modal-login">PAKETÜS Hesabına Giriş</h2>
+      <button type="button" class="dialog-close" data-close-dialog="modal-login" aria-label="Kapat">✕</button>
+    </div>
+    <form id="form-modal-login" class="dialog-body stack-form" autocomplete="off">
+      <div class="form-field">
+        <label for="login-phone">Telefon Numarası</label>
+        <input type="tel" id="login-phone" name="phone" required placeholder="0555 100 10 10" autocomplete="off">
+      </div>
+      <div class="form-field">
+        <label for="login-password">Şifre</label>
+        <input type="password" id="login-password" name="password" required placeholder="••••" autocomplete="off">
+      </div>
+      <div class="form-field">
+        <label for="login-tenant">Şirket / Operasyon Kodu (İsteğe Bağlı)</label>
+        <input type="text" id="login-tenant" name="tenantSlug" placeholder="merkez" autocomplete="off">
+      </div>
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-ghost-light" data-close-dialog="modal-login">Vazgeç</button>
+        <button type="submit" class="btn btn-emerald">Giriş Yap</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- 2. YENİ KURYE OPERASYONU KAYIT MODALI -->
+  <dialog id="modal-register-tenant" aria-labelledby="title-register-tenant" class="paketus-dialog">
+    <div class="dialog-header">
+      <h2 id="title-register-tenant">🚀 Yeni Kurye Operasyonu Aç (+100 Hediye Kontör)</h2>
+      <button type="button" class="dialog-close" data-close-dialog="modal-register-tenant" aria-label="Kapat">✕</button>
+    </div>
+    <form id="form-register-tenant" class="dialog-body stack-form" autocomplete="off">
+      <p class="text-muted">30 saniyede tamamen izole kurye şirketinizi kurun; 1 örnek işletme, 1 kurye ve <strong>100 yanmayan hoş geldin kontörü</strong> anında tanımlansın.</p>
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="reg-company">Kurye Şirketi / Operasyon Adı</label>
+          <input type="text" id="reg-company" name="companyName" required placeholder="Örn: Körfez Ekspres Kurye" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="reg-city">Şehir / Bölge</label>
+          <input type="text" id="reg-city" name="city" required placeholder="Örn: İzmir, Karşıyaka" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="reg-admin-name">Yönetici Adı Soyadı</label>
+          <input type="text" id="reg-admin-name" name="adminName" required placeholder="Ad Soyad" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="reg-admin-phone">Yönetici Telefonu (Giriş No)</label>
+          <input type="tel" id="reg-admin-phone" name="adminPhone" required placeholder="05xx xxx xx xx" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="reg-password">Yönetici Şifresi Belirleyin</label>
+        <input type="password" id="reg-password" name="password" required minlength="4" placeholder="En az 4 karakter" autocomplete="off">
+      </div>
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-ghost-light" data-close-dialog="modal-register-tenant">Vazgeç</button>
+        <button type="submit" class="btn btn-emerald">Operasyonu Kur &amp; Panele Geç</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- 3. YÖNETİCİ YENİ SİPARİŞ + CALLER ID MODALI -->
+  <dialog id="modal-new-order" aria-labelledby="title-new-order" class="paketus-dialog dialog-wide">
+    <div class="dialog-header">
+      <h2 id="title-new-order">➕ Yeni Sipariş Oluştur (Caller ID Destekli)</h2>
+      <button type="button" class="dialog-close" data-close-dialog="modal-new-order" aria-label="Kapat">✕</button>
+    </div>
+    <form id="form-admin-new-order" class="dialog-body stack-form" autocomplete="off">
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="admin-order-shop">Çıkış İşletmesi / Şube</label>
+          <select id="admin-order-shop" name="shopId" required></select>
+        </div>
+        <div class="form-field">
+          <label for="admin-order-type">Sipariş Tipi</label>
+          <select id="admin-order-type" name="orderType">
+            <option value="delivery">🛵 Paket Servis</option>
+            <option value="takeaway">🛍️ Gel-Al</option>
+            <option value="dine_in">🍽️ Salon / Masa</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="admin-order-phone">Müşteri Telefonu (Caller ID)</label>
+          <input type="tel" id="admin-order-phone" name="customerPhone" required placeholder="05xx... yazıldığında geçmişi gelir" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="admin-order-name">Müşteri Adı Soyadı</label>
+          <input type="text" id="admin-order-name" name="customerName" required placeholder="Ad Soyad" autocomplete="off">
+        </div>
+      </div>
+      <div id="admin-modal-caller-status" class="caller-hint-text"></div>
+
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="admin-order-neighborhood">Mahalle</label>
+          <input type="text" id="admin-order-neighborhood" name="neighborhood" placeholder="Örn: Akçay Mah." autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="admin-order-payment">Ödeme Yöntemi</label>
+          <select id="admin-order-payment" name="paymentMethod">
+            <option value="cash">💵 Kapıda Nakit</option>
+            <option value="card_on_delivery">💳 Kapıda Kredi Kartı (POS)</option>
+            <option value="online_paid">✅ Online Ödendi</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="admin-order-address">Açık Teslimat Adresi</label>
+        <textarea id="admin-order-address" name="customerAddress" rows="2" required placeholder="Cadde, sokak, bina ve daire numarası..."></textarea>
+      </div>
+
+      <div class="form-row-3">
+        <div class="form-field">
+          <label for="admin-order-amount">Sipariş Tutarı (₺)</label>
+          <input type="number" id="admin-order-amount" name="orderAmount" step="0.5" min="0" required value="420" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="admin-order-items">Ürün Özeti</label>
+          <input type="text" id="admin-order-items" name="itemsSummary" placeholder="Örn: 2x Menü" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="admin-order-notes">Teslimat Notu</label>
+          <input type="text" id="admin-order-notes" name="notes" placeholder="İsteğe bağlı not" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-ghost-light" data-close-dialog="modal-new-order">Vazgeç</button>
+        <button type="submit" class="btn btn-emerald">Siparişi Havuza Al</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- 4. PAKET BAZLI SOHBET MODALI -->
+  <dialog id="modal-order-chat" aria-labelledby="title-order-chat" class="paketus-dialog">
+    <div class="dialog-header">
+      <h2 id="title-order-chat">💬 Paket İçi Canlı Sohbet</h2>
+      <button type="button" class="dialog-close" data-close-dialog="modal-order-chat" aria-label="Kapat">✕</button>
+    </div>
+    <div class="dialog-body">
+      <div id="chat-order-summary" class="chat-order-banner"></div>
+      <div id="chat-messages-list" class="chat-messages-box"></div>
+      <div class="chat-quick-replies">
+        <button type="button" class="chip-btn" data-quick-chat="Paket hazır, kurye bekleniyor.">Paket hazır</button>
+        <button type="button" class="chip-btn" data-quick-chat="Ekstra POS rulosu ve sos eklendi.">POS + sos eklendi</button>
+        <button type="button" class="chip-btn" data-quick-chat="Müşteriye 2 dakika içinde ulaşıyorum.">2 dk'ya kapıdayım</button>
+      </div>
+      <form id="form-order-chat" class="inline-search-row" autocomplete="off">
+        <input type="hidden" id="chat-order-id">
+        <input type="text" id="chat-message-input" required placeholder="İşletme, kurye ve merkeze mesaj yazın..." autocomplete="off">
+        <button type="submit" class="btn btn-emerald">Gönder</button>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- 5. 80MM TERMAL FİŞ İNCELEME & YAKINLAŞTIRMA (ZOOM) MODALI -->
+  <dialog id="modal-receipt" aria-labelledby="title-modal-receipt" class="paketus-dialog dialog-wide">
+    <div class="dialog-header">
+      <h2 id="title-modal-receipt">🧾 80mm Termal Fiş Önizleme &amp; Yakınlaştırma</h2>
+      <button type="button" class="dialog-close" data-close-dialog="modal-receipt" aria-label="Kapat">✕</button>
+    </div>
+    <div class="dialog-body">
+      <div class="receipt-zoom-toolbar">
+        <div class="zoom-controls">
+          <button type="button" id="btn-receipt-zoom-out" class="btn btn-outline-light btn-xs">➖ Küçült</button>
+          <input type="range" id="receipt-zoom-range" min="60" max="200" step="10" value="100" aria-label="Fiş Yakınlaştırma Oranı">
+          <button type="button" id="btn-receipt-zoom-in" class="btn btn-outline-light btn-xs">➕ Yakınlaştır</button>
+          <button type="button" id="btn-receipt-zoom-reset" class="btn btn-ghost-light btn-xs">%100</button>
+          <span id="receipt-zoom-label" class="badge badge-emerald">%100</span>
+        </div>
+        <button type="button" id="btn-receipt-print" class="btn btn-amber btn-sm">🖨️ 80mm Yazdır</button>
+      </div>
+      <div class="receipt-viewport">
+        <div id="receipt-scale-stage" class="receipt-scale-stage">
+          <iframe id="receipt-iframe" title="80mm Termal Fiş Önizleme" class="receipt-iframe"></iframe>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 6. FİNANSAL DÜZELTME MODALI (TESLİM EDİLMİŞ DAHİL) -->
+  <dialog id="modal-financials" aria-labelledby="title-modal-financials" class="paketus-dialog">
+    <div class="dialog-header">
+      <h2 id="title-modal-financials">✏️ Sipariş Tutar &amp; Ödeme Tipi Düzeltme</h2>
+      <button type="button" class="dialog-close" data-close-dialog="modal-financials" aria-label="Kapat">✕</button>
+    </div>
+    <form id="form-edit-financials" class="dialog-body stack-form" autocomplete="off">
+      <input type="hidden" id="fin-order-id">
+      <p id="fin-order-info" class="text-muted"></p>
+      <div class="form-field">
+        <label for="fin-payment-method">Güncel Tahsilat / Ödeme Yöntemi</label>
+        <select id="fin-payment-method" name="paymentMethod" required>
+          <option value="cash">💵 Kapıda Nakit</option>
+          <option value="card_on_delivery">💳 Kapıda Kredi Kartı (POS)</option>
+          <option value="online_paid">✅ Online Ödenmiş</option>
+        </select>
+      </div>
+      <div class="form-row-3">
+        <div class="form-field">
+          <label for="fin-order-amount">Paket Tutarı (₺)</label>
+          <input type="number" id="fin-order-amount" step="0.01" min="0" required autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="fin-delivery-fee">İşletme Servis Ücreti (₺)</label>
+          <input type="number" id="fin-delivery-fee" step="0.01" min="0" required autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="fin-courier-earning">Kurye Hakedişi (₺)</label>
+          <input type="number" id="fin-courier-earning" step="0.01" min="0" required autocomplete="off">
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-ghost-light" data-close-dialog="modal-financials">Vazgeç</button>
+        <button type="submit" class="btn btn-emerald">Finansal Kaydı Güncelle</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- 7. İŞLETME / ŞUBE EKLE & TARİFE / PİN DÜZENLE MODALI -->
+  <dialog id="modal-shop-form" aria-labelledby="title-shop-form" class="paketus-dialog dialog-wide">
+    <div class="dialog-header">
+      <h2 id="title-shop-form">🏪 İşletme, Çoklu Marka Grubu &amp; Tarife Ayarı</h2>
+      <button type="button" class="dialog-close" data-close-dialog="modal-shop-form" aria-label="Kapat">✕</button>
+    </div>
+    <form id="form-shop-save" class="dialog-body stack-form" autocomplete="off">
+      <input type="hidden" id="shop-form-id">
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="shop-form-name">İşletme / Şube Adı</label>
+          <input type="text" id="shop-form-name" required placeholder="Örn: Hatay Dönercisi Çarşı" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="shop-form-brand">Marka Etiketi</label>
+          <input type="text" id="shop-form-brand" placeholder="Örn: Hatay Döner" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="shop-form-group">Çoklu Marka Grubu (İsteğe Bağlı)</label>
+          <select id="shop-form-group">
+            <option value="">Tekil İşletme (Grup Yok)</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="shop-form-phone">İşletme Telefonu (Giriş / İletişim)</label>
+          <input type="tel" id="shop-form-phone" required placeholder="0555..." autocomplete="off">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="shop-form-address">Açık Adres</label>
+        <input type="text" id="shop-form-address" placeholder="Mahalle, Cadde, No..." autocomplete="off">
+      </div>
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="shop-form-lat">Enlem (Lat Pin)</label>
+          <input type="number" id="shop-form-lat" step="0.000001" placeholder="39.5961" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="shop-form-lng">Boylam (Lng Pin)</label>
+          <input type="number" id="shop-form-lng" step="0.000001" placeholder="27.0244" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-row-4">
+        <div class="form-field">
+          <label for="shop-form-tariff">Tarife Modu</label>
+          <select id="shop-form-tariff">
+            <option value="km">Sabit + Km</option>
+            <option value="zone">Bölge (Zone)</option>
+            <option value="percent">% Komisyon</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="shop-form-base-fee">Baz Ücret (₺)</label>
+          <input type="number" id="shop-form-base-fee" step="0.5" value="45" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="shop-form-km-fee">Km Ücreti (₺)</label>
+          <input type="number" id="shop-form-km-fee" step="0.5" value="8" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="shop-form-comm">Komisyon (%)</label>
+          <input type="number" id="shop-form-comm" step="0.5" value="12" autocomplete="off">
+        </div>
+      </div>
+      <label class="checkbox-row">
+        <input type="checkbox" id="shop-form-autoprint" checked>
+        <span>Sipariş geldiğinde 80mm termal fişi otomatik yazdırma kuyruğuna ekle</span>
+      </label>
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-ghost-light" data-close-dialog="modal-shop-form">Vazgeç</button>
+        <button type="submit" class="btn btn-emerald">İşletmeyi Kaydet</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- 8. KURYE EKLE & DÜZENLE MODALI -->
+  <dialog id="modal-courier-form" aria-labelledby="title-courier-form" class="paketus-dialog">
+    <div class="dialog-header">
+      <h2 id="title-courier-form">🛵 Kurye Profil &amp; Hakediş Ayarı</h2>
+      <button type="button" class="dialog-close" data-close-dialog="modal-courier-form" aria-label="Kapat">✕</button>
+    </div>
+    <form id="form-courier-save" class="dialog-body stack-form" autocomplete="off">
+      <input type="hidden" id="courier-form-id">
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="courier-form-name">Kurye Adı Soyadı</label>
+          <input type="text" id="courier-form-name" required placeholder="Ad Soyad" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="courier-form-phone">Telefon (Giriş Numarası)</label>
+          <input type="tel" id="courier-form-phone" required placeholder="0555..." autocomplete="off">
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="courier-form-vehicle">Araç Tipi</label>
+          <select id="courier-form-vehicle">
+            <option value="motorcycle">🛵 Motosiklet</option>
+            <option value="car">🚗 Araçlı Kurye</option>
+            <option value="ebike">⚡ E-Bisiklet</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="courier-form-max-batch">Maksimum Eşzamanlı Paket</label>
+          <input type="number" id="courier-form-max-batch" min="1" max="10" value="4" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-field">
+          <label for="courier-form-pkg-fee">Paket Başı Hakediş (₺)</label>
+          <input type="number" id="courier-form-pkg-fee" step="0.5" value="32" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="courier-form-km-bonus">Km Başı Prim (₺)</label>
+          <input type="number" id="courier-form-km-bonus" step="0.5" value="5" autocomplete="off">
+        </div>
+      </div>
+      <label class="checkbox-row">
+        <input type="checkbox" id="courier-form-has-pos" checked>
+        <span>💳 Kuryede Mobil POS Cihazı Zimmetli (Kapıda Kart Siparişi Alabilir)</span>
+      </label>
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-ghost-light" data-close-dialog="modal-courier-form">Vazgeç</button>
+        <button type="submit" class="btn btn-emerald">Kuryeyi Kaydet</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- 9. TELSİZ GEÇMİŞİ MODALI -->
+  <dialog id="modal-radio-history" aria-labelledby="title-radio-history" class="paketus-dialog">
+    <div class="dialog-header">
+      <h2 id="title-radio-history">📻 Son 25 Bas-Konuş Saha Telsiz Anonsu</h2>
+      <button type="button" class="dialog-close" data-close-dialog="modal-radio-history" aria-label="Kapat">✕</button>
+    </div>
+    <div class="dialog-body">
+      <div id="radio-history-list" class="stack-list"></div>
+    </div>
+  </dialog>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="/app.js?v=20261112" defer></script>
+</body>
+</html>

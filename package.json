@@ -1,0 +1,16 @@
+{
+  "name": "paketus",
+  "version": "1.0.0",
+  "description": "PAKETÜS — Kurumsal Çok Kiracılı Kurye, Akıllı Rota Birleştirme, POS & Süresiz Kontör Otomasyonu",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node --experimental-sqlite server.js",
+    "test": "node --experimental-sqlite --test tests/*.test.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

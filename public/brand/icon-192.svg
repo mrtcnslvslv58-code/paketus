@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" fill="none">
+  <defs>
+    <linearGradient id="pwaBg192" x1="0" y1="0" x2="192" y2="192" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="pwaEmerald192" x1="50" y1="40" x2="142" y2="152" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="pwaCyan192" x1="40" y1="60" x2="152" y2="132" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <filter id="pwaGlow192" x="24" y="24" width="144" height="144" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#10b981" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- PWA App Background Squircle -->
+  <rect width="192" height="192" rx="42" fill="url(#pwaBg192)"/>
+  <rect x="2" y="2" width="188" height="188" rx="40" stroke="#334155" stroke-width="2.5" stroke-opacity="0.8"/>
+
+  <!-- Speed Orbit / Route Loop -->
+  <path d="M52 126C40 102 46 66 74 54C98 42 128 54 138 75C147 96 132 126 108 135" 
+        stroke="url(#pwaCyan192)" stroke-width="8" stroke-linecap="round" stroke-dasharray="9 9" opacity="0.5"/>
+
+  <!-- Centered 3D Isometric Parcel -->
+  <g filter="url(#pwaGlow192)">
+    <!-- Top Face -->
+    <path d="M96 44L138 68L96 92L54 68Z" fill="#34d399"/>
+    <!-- Left Face -->
+    <path d="M54 68L96 92V142L54 118Z" fill="url(#pwaEmerald192)"/>
+    <!-- Right Face -->
+    <path d="M96 92L138 68V118L96 142Z" fill="#047857"/>
+    <!-- Seam Lines -->
+    <path d="M96 44V92M96 92V142" stroke="#064e3b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M75 56L117 80" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Waypoint Pin Beacon -->
+  <circle cx="140" cy="134" r="12" fill="#38bdf8"/>
+  <circle cx="140" cy="134" r="5" fill="#ffffff"/>
+  <circle cx="140" cy="134" r="18" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.4"/>
+</svg>
